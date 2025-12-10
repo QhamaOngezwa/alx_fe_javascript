@@ -1,7 +1,7 @@
 const { createElement } = require("react");
 
 const displayQuote = document.querySelector("#quoteDisplay");
-const newQuoteButton = document.querySelector("#newQuote");
+const newQuoteButton = document.getElementById("newQuote");
 const addQuoteButton = document.querySelector("#addQuote");
 const newQuoteText = document.querySelector("#newQuoteText");
 const newQuoteCategory = document.querySelector("#newQuoteCategory");
