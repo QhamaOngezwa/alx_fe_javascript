@@ -1,3 +1,5 @@
+const { createElement } = require("react");
+
 const displayQuote = document.querySelector("#quoteDisplay");
 const newQuoteButton = document.querySelector("#newQuote");
 const addQuoteButton = document.querySelector("#addQuote");
@@ -36,11 +38,17 @@ function showRandomQuote() {
 function createAddQuoteForm() {
   const quoteText = newQuoteText.value.trim();
   const quoteCategory = newQuoteCategory.value.trim();
-  if (quoteText && quoteCategory) {
+
+  if (quoteText === "" || quoteCategory === "") {
+    const newQuote = document.createElement("div");
+    newQuote.appendChild(document.createTextNode(`"${quoteText}" - `));
+    const categoryEm = document.createElement("em");
+    categoryEm.appendChild(document.createTextNode(quoteCategory));
+    newQuote.appendChild(categoryEm);
     quotes.push({ text: quoteText, category: quoteCategory });
     newQuoteText.value = "";
     newQuoteCategory.value = "";
-    alert("New quote added!");
+    alert("New quote added successfully!");
   }
 }
 
