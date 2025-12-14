@@ -149,6 +149,19 @@ async function fetchQuotesFromAPI() {
   }
 }
 
+async function postQuoteToServer(quote) {
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(quote),
+  });
+
+  const data = await response.json();
+  console.log("Server response:", data);
+}
+
 // function syncQuotes(){
 //   fetchQuotesFromServer();
 // }
