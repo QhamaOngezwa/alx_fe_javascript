@@ -126,15 +126,27 @@ function filterQuotes() {
   }
 }
 
-function fetchQuotesFromServer() {
-  fetch("https://example.com/api/quotes")
-    .then((response) => response.json())
-    .then((data) => {
-      quotes.push(...data);
-      populateCategories();
-      saveQuotesToLocalStorage();
-    })
-    .catch((error) => console.error("Error fetching quotes:", error));
+async function fetchQuotesFromAPI() {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const data = await response.json();
+
+    // Convert API posts into quote-like objects
+    const apiQuotes = data.slice(0, 5).map((post) => ({
+      text: post.title,
+      category: "API",
+    }));
+
+    // Merge with existing quotes
+    quotes.push(...apiQuotes);
+
+    saveQuotesToLocalStorage();
+    populateCategories();
+
+    console.log("Quotes fetched from API");
+  } catch (error) {
+    console.error("Error fetching quotes:", error);
+  }
 }
 
 // function syncQuotes(){
