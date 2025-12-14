@@ -168,6 +168,9 @@ function startPeriodicSync() {
     const serverQuotes = await fetchQuotesFromServer();
     syncWithServer(serverQuotes);
   }, 30000); // every 30 seconds
+  showNotification(
+    `Quotes synced with server! Conflicts resolved: ${conflicts}`
+  );
 }
 
 // function syncQuotes(){
