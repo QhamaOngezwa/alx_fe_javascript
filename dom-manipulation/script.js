@@ -162,6 +162,14 @@ async function postQuoteToServer(quote) {
   console.log("Server response:", data);
 }
 
+function startPeriodicSync() {
+  setInterval(async () => {
+    console.log("Fetching new quotes from server...");
+    const serverQuotes = await fetchQuotesFromServer();
+    syncWithServer(serverQuotes);
+  }, 30000); // every 30 seconds
+}
+
 // function syncQuotes(){
 //   fetchQuotesFromServer();
 // }
