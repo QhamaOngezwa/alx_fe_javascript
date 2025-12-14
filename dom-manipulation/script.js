@@ -126,6 +126,21 @@ function filterQuotes() {
   }
 }
 
+function fetchQuotesFromServer() {
+  fetch("https://example.com/api/quotes")
+    .then((response) => response.json())
+    .then((data) => {
+      quotes.push(...data);
+      populateCategories();
+      saveQuotesToLocalStorage();
+    })
+    .catch((error) => console.error("Error fetching quotes:", error));
+}
+
+// function syncQuotes(){
+//   fetchQuotesFromServer();
+// }
+
 //Event listener for new quote button
 newQuoteButton.addEventListener("click", showRandomQuote);
 //Event listener for add quote button
