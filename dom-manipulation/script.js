@@ -63,6 +63,8 @@ function loadQuotesFromLocalStorage() {
   }
 }
 
+loadQuotesFromLocalStorage();
+
 //Event listener for new quote button
 newQuoteButton.addEventListener("click", showRandomQuote);
 //Event listener for add quote button
