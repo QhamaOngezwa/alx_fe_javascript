@@ -110,6 +110,22 @@ function populateCategories() {
   });
 }
 
+//filter quotes function to update displayed quotes based on selected category
+function filterQuotes() {
+  const selectedCategory = categoryFilter.value;
+  const filteredQuotes =
+    selectedCategory === "all"
+      ? quotes
+      : quotes.filter((quote) => quote.category === selectedCategory);
+  if (filteredQuotes.length > 0) {
+    const randomIndex = Math.floor(Math.random() * filteredQuotes.length);
+    const randomQuote = filteredQuotes[randomIndex];
+    displayQuote.innerHTML = `"${randomQuote.text}" - <em>${randomQuote.category}</em>`;
+  } else {
+    displayQuote.innerHTML = "No quotes available for this category.";
+  }
+}
+
 //Event listener for new quote button
 newQuoteButton.addEventListener("click", showRandomQuote);
 //Event listener for add quote button
