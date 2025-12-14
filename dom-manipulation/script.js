@@ -1,7 +1,5 @@
-const { createElement } = require("react");
-
 const displayQuote = document.querySelector("#quoteDisplay");
-const newQuoteButton = document.getElementById("newQuote");
+const newQuoteButton = document.querySelector("#newQuote");
 const addQuoteButton = document.querySelector("#addQuote");
 const newQuoteText = document.querySelector("#newQuoteText");
 const newQuoteCategory = document.querySelector("#newQuoteCategory");
@@ -39,7 +37,7 @@ function createAddQuoteForm() {
   const quoteText = newQuoteText.value.trim();
   const quoteCategory = newQuoteCategory.value.trim();
 
-  if (quoteText === "" || quoteCategory === "") {
+  if (quoteText !== "" && quoteCategory !== "") {
     const newQuote = document.createElement("div");
     newQuote.appendChild(document.createTextNode(`"${quoteText}" - `));
     const categoryEm = document.createElement("em");
@@ -49,7 +47,13 @@ function createAddQuoteForm() {
     newQuoteText.value = "";
     newQuoteCategory.value = "";
     alert("New quote added successfully!");
+  } else {
+    alert("Please enter both quote text and category.");
   }
+}
+
+function saveQuotesToLocalStorage() {
+  localStorage.setItem("quotes", JSON.stringify(quotes));
 }
 
 //Event listener for new quote button
