@@ -65,6 +65,28 @@ function loadQuotesFromLocalStorage() {
 
 loadQuotesFromLocalStorage();
 
+const exportButton = document.querySelector("#exportQuotes");
+
+function exportQuotesToJSON() {
+  const jsonData = JSON.stringify(quotes, null, 2); // pretty format
+
+  const blob = new Blob([jsonData], { type: "application/json" });
+
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "quotes.json";
+
+  document.body.appendChild(a);
+  a.click();
+
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url); // cleanup
+}
+
+exportButton.addEventListener("click", exportQuotesToJSON);
+
 //Event listener for new quote button
 newQuoteButton.addEventListener("click", showRandomQuote);
 //Event listener for add quote button
