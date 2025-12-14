@@ -55,6 +55,13 @@ function createAddQuoteForm() {
 function saveQuotesToLocalStorage() {
   localStorage.setItem("quotes", JSON.stringify(quotes));
 }
+function loadQuotesFromLocalStorage() {
+  const storedQuotes = localStorage.getItem("quotes");
+  if (storedQuotes) {
+    quotes.length = 0;
+    quotes.push(...JSON.parse(storedQuotes));
+  }
+}
 
 //Event listener for new quote button
 newQuoteButton.addEventListener("click", showRandomQuote);
