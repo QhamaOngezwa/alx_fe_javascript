@@ -97,6 +97,19 @@ function importFromJsonFile(event) {
   };
   fileReader.readAsText(event.target.files[0]);
 }
+
+const categoryFilter = document.getElementById("categoryFilter");
+
+function populateCategories() {
+  const categories = new Set(quotes.map((quote) => quote.category));
+  categories.forEach((category) => {
+    const option = document.createElement("option");
+    option.value = category;
+    option.textContent = category;
+    categoryFilter.appendChild(option);
+  });
+}
+
 //Event listener for new quote button
 newQuoteButton.addEventListener("click", showRandomQuote);
 //Event listener for add quote button
